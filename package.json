@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "🔬 A tiny library for common NLP tasks.",
   "source": "src/recognizy.ts",
-  "main": "dist/recognizy.js",         
-  "module": "dist/recognizy.module.js",  
+  "main": "dist/recognizy.js",
+  "module": "dist/recognizy.module.js",
   "unpkg": "dist/recognizy.umd.js",
   "scripts": {
     "build": "microbundle",
-    "dev": "microbundle watch"     
+    "dev": "microbundle watch",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/ArthurDelamare/Recognizy#readme",
   "devDependencies": {
+    "jest": "^26.4.2",
     "microbundle": "^0.12.3"
   }
 }
