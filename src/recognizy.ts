@@ -1,5 +1,5 @@
-import Fuzzy from "./fuzzy";
+import { Fuzzy, FuzzyOptions } from "./fuzzy";
 import jaccard from "./vectors/jaccard";
 import match from "./string/match";
 
-export { Fuzzy, jaccard, match };
+export { Fuzzy, FuzzyOptions, jaccard, match };
