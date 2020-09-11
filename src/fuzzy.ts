@@ -9,13 +9,13 @@ export class Fuzzy {
 
   public search(pattern: string, options: FuzzyOptions = {}) {
     let matches = [];
-    
+
     if (this.items.every(item => typeof(item) === "string")) {
       matches = this.stringSearch(pattern);
     } else if (options.keys == null) {
       throw new Error("Used object without specifying keys in options.");
     } else {
-      matches = this.objectSearch(pattern, options.keys);
+      matches = this.objectSearch(pattern, options.keys);;
     }
 
     return matches;
@@ -50,16 +50,14 @@ export class Fuzzy {
       }
     }
 
-    
-
     return matches;
   }
 
   private itemSearch(pattern: string, item: any, keys: string[]): FuzzyResult {
     const match: FuzzyResult = {};
 
-    for (const key in keys) {
-      const variable = this.items[key];
+    for (const key of keys) {
+      const variable = item[key];
 
       if (typeof(variable) === "string") {
         const result = rabinkarp(variable, pattern);
