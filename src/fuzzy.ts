@@ -1,14 +1,15 @@
 import { rabinkarp } from "./hash/rabinkarp";
 
 export class Fuzzy {
-  public readonly items: string[] = [];
+  public readonly items: any[] = [];
 
 
-  constructor(items: string[]) {
+  constructor(items: any[] ) {
     this.items = items;
   }
 
   search(pattern: string, options: FuzzyOptions) {
+    
   }
 }
 
