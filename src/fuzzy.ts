@@ -8,7 +8,7 @@ export class Fuzzy {
     this.items = items;
   }
 
-  search(pattern: string, options: FuzzyOptions) {
+  public search(pattern: string, options: FuzzyOptions) {
     
   }
 }
@@ -16,4 +16,10 @@ export class Fuzzy {
 export interface FuzzyOptions {
   caseSensitive?: boolean;
   keys?: string[]; 
+}
+
+export interface FuzzyResult<T> {
+  item: T,
+  index: number,
+  matchesAt: number[]
 }
