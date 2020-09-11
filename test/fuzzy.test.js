@@ -70,3 +70,13 @@ test("Should throw an error when using object without specifying keys in options
 
   expect(() => { fuzzy.search("wallflower") }).toThrowError(new Error("Used object without specifying keys in options."));
 });
+
+test("Should return an empty array when given empty list", () => {
+  const items = [];
+  const fuzzy = new Fuzzy(items);
+
+  const matches = fuzzy.search("anything");
+
+  expect(matches.length).toBe(0);
+  expect(matches).toStrictEqual([]);
+})
