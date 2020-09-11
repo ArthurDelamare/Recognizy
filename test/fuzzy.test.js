@@ -80,3 +80,45 @@ test("Should return an empty array when given empty list", () => {
   expect(matches.length).toBe(0);
   expect(matches).toStrictEqual([]);
 })
+
+test("Should return a match when given an object array with a matching pattern", () => {
+  const items = [
+    {
+      movie: "Tenet",
+      synopsis: "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
+      author: "Christopher Nolan"
+    },
+    {
+      movie: "Inception",
+      synopsis: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      author: "Christopher Nolan"
+    },
+    {
+      movie: "The perks of being a wallflower",
+      synopsis: "An introvert freshman is taken under the wings of two seniors who welcome him to the real world.",
+      author: "Stephen Chbosky"
+    }
+  ];
+
+  const options = {
+    keys: ["movie", "synopsis"]
+  };
+
+  const fuzzy = new Fuzzy(items);
+
+  const matches = fuzzy.search("technology", options);
+
+  expect(matches.length).toBeGreaterThan(0);
+  expect(matches).toStrictEqual(
+    [
+      {
+        index: 1,
+        item: {
+          movie: "Inception",
+          synopsis: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+          author: "Christopher Nolan"
+        },
+      }
+    ]
+  );
+});
