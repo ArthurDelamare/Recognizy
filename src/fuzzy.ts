@@ -12,6 +12,8 @@ export class Fuzzy {
     
     if (this.items.every(item => typeof(item) === "string")) {
       matches = this.stringSearch(pattern);
+    } else if (options.keys == null) {
+      throw new Error("Used object without specifying keys in options.");
     }
 
     return matches;
