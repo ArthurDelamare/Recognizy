@@ -11,8 +11,8 @@
     "dev": "microbundle watch",
     "test": "jest",
     "coverage": "jest --coverage",
-    "format": "prettier --write ./src/**/*.js",
-    "lint": "eslint \"src/**/*.js\" --quiet"
+    "format": "prettier --write ./src/**/*.ts",
+    "lint": "eslint \"src/**/*.ts\" --quiet"
   },
   "repository": {
     "type": "git",
