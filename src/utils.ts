@@ -1,9 +1,9 @@
 function getProperty(obj: any, keys: string[]): any {
-    let property = obj;
+  let property = obj;
 
-    for (const key of keys) {
-        property = property[key] || {};
-    }
+  for (const key of keys) {
+    property = property[key] || {};
+  }
 
-    return property;
+  return property;
 }
