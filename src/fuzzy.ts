@@ -7,8 +7,8 @@ export class Fuzzy {
     this.items = items;
   }
 
-  public search(pattern: string, options: FuzzyOptions = {}) {
-    let matches = [];
+  public search(pattern: string, options: FuzzyOptions = {}): FuzzyResult[] {
+    let matches: FuzzyResult[] = [];
 
     if (this.items.every(item => typeof(item) === "string")) {
       matches = this.stringSearch(pattern, options.caseSensitive);
