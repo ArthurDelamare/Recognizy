@@ -122,3 +122,35 @@ test("Should return a match when given an object array with a matching pattern",
     ]
   );
 });
+
+test("Should match without taking care of lowercase or uppercase with caseSensitive option as true", () => {
+  const items = [
+    {
+      movie: "Tenet",
+      synopsis: "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
+      author: "Christopher Nolan"
+    },
+    {
+      movie: "Inception",
+      synopsis: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      author: "Christopher Nolan"
+    },
+    {
+      movie: "The perks of being a wallflower",
+      synopsis: "An introvert freshman is taken under the wings of two seniors who welcome him to the real world.",
+      author: "Stephen Chbosky"
+    }
+  ];
+  const fuzzy = new Fuzzy(items);
+
+  const options = {
+    keys: ["movie", "synopsis"],
+    caseSensitive: true
+  };
+  const caseSensitiveResult = fuzzy.search("Tenet", options);
+  expect(caseSensitiveResult.length).toBe(0);
+
+  options.caseSensitive = false;
+  const notCaseSensitiveResult = fuzzy.search("Tenet", options);
+  expect(notCaseSensitiveResult.length).toBe(1);
+});
