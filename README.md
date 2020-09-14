@@ -5,4 +5,4 @@
 [![Build Status](https://travis-ci.com/ArthurDelamare/recognizy.svg?branch=master)](https://travis-ci.com/ArthurDelamare/recognizy)
 [![GitHub](https://img.shields.io/github/license/ArthurDelamare/recognizy)](https://github.com/ArthurDelamare/recognizy/blob/master/LICENSE)
 
-🔬 A tiny library for common NLP tasks.
+A tiny library for fuzzy matching.
