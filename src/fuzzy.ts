@@ -9,13 +9,14 @@ export class Fuzzy {
 
   public search(pattern: string, options: FuzzyOptions = {}): FuzzyResult[] {
     let matches: FuzzyResult[] = [];
+    const formattedPattern = options.caseSensitive ? pattern : pattern.toLowerCase();
 
     if (this.items.every(item => typeof(item) === "string")) {
-      matches = this.stringSearch(pattern, options.caseSensitive);
+      matches = this.stringSearch(formattedPattern, options.caseSensitive);
     } else if (options.keys == null) {
       throw new Error("Used object without specifying keys in options.");
     } else {
-      matches = this.objectSearch(pattern, options.keys);;
+      matches = this.objectSearch(formattedPattern, options.keys);;
     }
 
     return matches;
