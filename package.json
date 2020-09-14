@@ -1,6 +1,6 @@
 {
   "name": "recognizy",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "🔬 A tiny library for common NLP tasks.",
   "source": "src/recognizy.ts",
   "main": "dist/recognizy.js",
