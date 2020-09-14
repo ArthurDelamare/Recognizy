@@ -1,7 +1,7 @@
 {
   "name": "recognizy",
-  "version": "1.4.0",
-  "description": "🔬 A tiny library for common NLP tasks.",
+  "version": "1.4.1",
+  "description": "A tiny library for fuzzy matching",
   "source": "src/recognizy.ts",
   "main": "dist/recognizy.js",
   "module": "dist/recognizy.module.js",
