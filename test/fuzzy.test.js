@@ -42,9 +42,9 @@ test("Should return several matches", () => {
 
   expect(matches.length).toBeGreaterThan(1);
   expect(matches).toContainEqual({
-    item: 'Dessert jelly pastry sweet jelly beans pie cheesecake croissant',
+    item: "Dessert jelly pastry sweet jelly beans pie cheesecake croissant",
     index: 0,
-    matchesAt: [ 43 ]
+    matchesAt: [43],
   });
 });
 
@@ -52,23 +52,28 @@ test("Should throw an error when using object without specifying keys in options
   const items = [
     {
       movie: "Tenet",
-      synopsis: "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
-      author: "Christopher Nolan"
+      synopsis:
+        "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
+      author: "Christopher Nolan",
     },
     {
       movie: "Inception",
-      synopsis: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-      author: "Christopher Nolan"
+      synopsis:
+        "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      author: "Christopher Nolan",
     },
     {
       movie: "The perks of being a wallflower",
-      synopsis: "An introvert freshman is taken under the wings of two seniors who welcome him to the real world.",
-      author: "Stephen Chbosky"
-    }
+      synopsis:
+        "An introvert freshman is taken under the wings of two seniors who welcome him to the real world.",
+      author: "Stephen Chbosky",
+    },
   ];
   const fuzzy = new Fuzzy(items);
 
-  expect(() => { fuzzy.search("wallflower") }).toThrowError(new Error("Used object without specifying keys in options."));
+  expect(() => {
+    fuzzy.search("wallflower");
+  }).toThrowError(new Error("Used object without specifying keys in options."));
 });
 
 test("Should return an empty array when given empty list", () => {
@@ -79,29 +84,32 @@ test("Should return an empty array when given empty list", () => {
 
   expect(matches.length).toBe(0);
   expect(matches).toStrictEqual([]);
-})
+});
 
 test("Should return a match when given an object array with a matching pattern", () => {
   const items = [
     {
       movie: "Tenet",
-      synopsis: "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
-      author: "Christopher Nolan"
+      synopsis:
+        "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
+      author: "Christopher Nolan",
     },
     {
       movie: "Inception",
-      synopsis: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-      author: "Christopher Nolan"
+      synopsis:
+        "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      author: "Christopher Nolan",
     },
     {
       movie: "The perks of being a wallflower",
-      synopsis: "An introvert freshman is taken under the wings of two seniors who welcome him to the real world.",
-      author: "Stephen Chbosky"
-    }
+      synopsis:
+        "An introvert freshman is taken under the wings of two seniors who welcome him to the real world.",
+      author: "Stephen Chbosky",
+    },
   ];
 
   const options = {
-    keys: ["movie", "synopsis"]
+    keys: ["movie", "synopsis"],
   };
 
   const fuzzy = new Fuzzy(items);
@@ -109,43 +117,45 @@ test("Should return a match when given an object array with a matching pattern",
   const matches = fuzzy.search("technology", options);
 
   expect(matches.length).toBeGreaterThan(0);
-  expect(matches).toStrictEqual(
-    [
-      {
-        index: 1,
-        item: {
-          movie: "Inception",
-          synopsis: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-          author: "Christopher Nolan"
-        },
-      }
-    ]
-  );
+  expect(matches).toStrictEqual([
+    {
+      index: 1,
+      item: {
+        movie: "Inception",
+        synopsis:
+          "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+        author: "Christopher Nolan",
+      },
+    },
+  ]);
 });
 
 test("Should match without taking care of lowercase or uppercase with caseSensitive option as true", () => {
   const items = [
     {
       movie: "Tenet",
-      synopsis: "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
-      author: "Christopher Nolan"
+      synopsis:
+        "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
+      author: "Christopher Nolan",
     },
     {
       movie: "Inception",
-      synopsis: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-      author: "Christopher Nolan"
+      synopsis:
+        "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      author: "Christopher Nolan",
     },
     {
       movie: "The perks of being a wallflower",
-      synopsis: "An introvert freshman is taken under the wings of two seniors who welcome him to the real world.",
-      author: "Stephen Chbosky"
-    }
+      synopsis:
+        "An introvert freshman is taken under the wings of two seniors who welcome him to the real world.",
+      author: "Stephen Chbosky",
+    },
   ];
   const fuzzy = new Fuzzy(items);
 
   const options = {
     keys: ["movie", "synopsis"],
-    caseSensitive: true
+    caseSensitive: true,
   };
   const caseSensitiveResult = fuzzy.search("Tenet", options);
   expect(caseSensitiveResult.length).toBe(0);
@@ -153,4 +163,18 @@ test("Should match without taking care of lowercase or uppercase with caseSensit
   options.caseSensitive = false;
   const notCaseSensitiveResult = fuzzy.search("Tenet", options);
   expect(notCaseSensitiveResult.length).toBe(1);
+});
+
+test("getProperty should return the property if it's only one level deep", () => {
+  const item = {
+    movie: "Tenet",
+    synopsis:
+      "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
+    author: "Christopher Nolan",
+  };
+
+  const propertyKeys = ["movie"];
+
+  const property = recognizy.getProperty(item, propertyKeys);
+  expect(property).toBe("Tenet");
 });
