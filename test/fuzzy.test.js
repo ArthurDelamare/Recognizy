@@ -201,3 +201,41 @@ test("getProperty should return the property if it's two or more levels deep", (
   const property2 = recognizy.getProperty(item, keysAsString.split("."));
   expect(property2).toBe("English");
 });
+
+test("Should match when passing several levels deep properties, separated by a dot", () => {
+  const items = [
+    {
+      movie: "Tenet",
+      synopsis:
+        "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
+      info: {
+        author: "Christopher Nolan",
+      },
+    },
+    {
+      movie: "Inception",
+      synopsis:
+        "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      info: {
+        author: "Christopher Nolan",
+      },
+    },
+    {
+      movie: "The perks of being a wallflower",
+      synopsis:
+        "An introvert freshman is taken under the wings of two seniors who welcome him to the real world.",
+      info: {
+        author: "Stephen Chbosky",
+      },
+    },
+  ];
+  const fuzzy = new Fuzzy(items);
+
+  const options = {
+    keys: ["movie", "info.author"],
+    caseSensitive: false,
+  };
+
+  const result = fuzzy.search("Nolan", options);
+  expect(result.length).toBe(2);
+});
