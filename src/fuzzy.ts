@@ -1,4 +1,5 @@
 import { rabinkarp } from "./hash/rabinkarp";
+import { getProperty } from "./utils";
 
 export class Fuzzy {
   public readonly items: any[] = [];
@@ -70,7 +71,7 @@ export class Fuzzy {
     const match: FuzzyResult = {};
 
     for (const key of keys) {
-      const variable = item[key];
+      const variable = getProperty(item, key.split("."));
 
       if (typeof variable === "string") {
         const formattedVariable = caseSensitive
