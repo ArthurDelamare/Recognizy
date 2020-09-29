@@ -178,3 +178,26 @@ test("getProperty should return the property if it's only one level deep", () =>
   const property = recognizy.getProperty(item, propertyKeys);
   expect(property).toBe("Tenet");
 });
+
+test("getProperty should return the property if it's two or more levels deep", () => {
+  const item = {
+    movie: "Tenet",
+    synopsis:
+      "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
+    info: {
+      author: "Christopher Nolan",
+      language: "English",
+      type: "Action",
+    },
+  };
+
+  const propertyKeys = ["info", "language"];
+
+  const property = recognizy.getProperty(item, propertyKeys);
+  expect(property).toBe("English");
+
+  const keysAsString = "info.language";
+
+  const property2 = recognizy.getProperty(item, keysAsString.split("."));
+  expect(property2).toBe("English");
+});
