@@ -1,6 +1,6 @@
 {
   "name": "recognizy",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "A tiny library for fuzzy matching",
   "source": "src/recognizy.ts",
   "main": "dist/recognizy.js",
